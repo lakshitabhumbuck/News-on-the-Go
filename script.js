@@ -7,36 +7,14 @@ function reload() {
     window.location.reload();
 }
 
-/*
+
 async function fetchNews(query) {
     const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
     const data = await res.json();
     bindData(data.articles);
 }
-*/
 
-function fetchNews() {
-  // Make a fetch request
-  fetch('your_api_endpoint')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok.');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Check if 'data' exists and has the expected structure
-      if (data && Array.isArray(data.articles)) {
-        bindData(data.articles); // Assuming 'articles' is an array within 'data'
-      } else {
-        throw new Error('Data format not as expected.');
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching or processing data:', error);
-      // Handle errors gracefully, perhaps show an error message to the user
-    });
-}
+
 
 
 function bindData(articles) {
