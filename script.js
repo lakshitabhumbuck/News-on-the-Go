@@ -7,14 +7,29 @@ function reload() {
     window.location.reload();
 }
 
-
+/*
 async function fetchNews(query) {
     const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
     const data = await res.json();
     bindData(data.articles);
 }
+*/
 
-
+async function fetchNews(query) {
+    try {
+        const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+        
+        if (!res.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        
+        const data = await res.json();
+        bindData(data.articles);
+    } catch (error) {
+        console.error('Error fetching or processing data:', error);
+        // Handle errors gracefully, show an error message, or retry the request
+    }
+}
 
 
 function bindData(articles) {
